@@ -25,7 +25,12 @@ export default new Router({
     {
       path: "/search",
       name: "search",
-      component: () => import("./views/Select.vue")
+      component: () => import("./views/ModelAjax.vue")
+    },
+    {
+      path: "/results",
+      name: "results",
+      component: () => import("./views/Results.vue")
     }
   ]
 });
