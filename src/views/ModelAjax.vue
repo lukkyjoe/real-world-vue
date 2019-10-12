@@ -139,7 +139,7 @@ export default {
       this.$router.push({
         path: 'results',
         query: {
-          key: 'some sort of query'
+          industry: 'Building and Construction'
           }
         })
     }
