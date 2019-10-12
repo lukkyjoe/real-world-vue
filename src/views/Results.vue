@@ -10,13 +10,16 @@
     </div>
 
     <div v-if="post" class="content">
-      <h2>{{ post.title }}</h2>
-      <p>{{ post.body }}</p>
+      <el-card v-for="business in post">
+        {{ business }}
+      </el-card>
     </div>
   </div>
 </template>
 
 <script>
+import { getResults } from '../apis/airtable'
+
 export default {
   data () {
     return {
@@ -47,6 +50,19 @@ export default {
       //     this.post = post
       //   }
       // })
+      console.log('foobar query param', this.$route.query.industry)
+      let filteredIndustry = this.$route.query.industry
+      getResults(filteredIndustry)
+        .then(response => {
+          this.loading = false
+          this.post = response
+          console.log('sup post', this.post)
+        })
+        .catch(err => {
+          console.error(err);
+          this.loading = false
+          this.error = err
+        })
     }
   }  
 }

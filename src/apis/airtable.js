@@ -35,24 +35,29 @@ export const getIndustries = () => {
 
 export const getResults = filterValue => {
   return new Promise((resolve, reject) => {
+    let filterFormula = `FIND('${filterValue}', {Industry})`;
+    console.log('filterFormula', filterFormula);
     base("business")
       .select({
-        // Selecting the first 3 records in Grid view:
         maxRecords: 8,
         view: "Grid view",
-        filterByFormula: `{Name}=${filterValue}`
+        filterByFormula: filterFormula
       })
       .firstPage(function page(error, records) {
+        console.log('records', records);
+        console.log('error in airtable.js', error);
         if (error) reject(error);
         // This function (`page`) will get called for each page of records.
         let resultsArray = [];
-        records.forEach(function(record) {
-          let recordName = record.get("Name");
-          console.log("Retrieved", recordName);
-          if (recordName) {
-            resultsArray.push(record.get("Name"));
-          }
-        });
+        if (records.length) {
+          records.forEach(function(record) {
+            let recordName = record.get("Name");
+            console.log("Retrieved", recordName);
+            if (recordName) {
+              resultsArray.push(record.get("Name"));
+            }
+          });
+        }
 
         // To fetch the next page of records, call `fetchNextPage`.
         // If there are more records, `page` will get called again.
