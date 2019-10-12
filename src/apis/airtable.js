@@ -51,6 +51,8 @@ export const getIndustries = query => {
 };
 
 export const getResults = filterValue => {
+  console.log('process.env', process.env)
+  console.log('AIRTABLE_BASE', process.env.AIRTABLE_BASE)
   return new Promise((resolve, reject) => {
     let filterFormula = `FIND('${filterValue}', {Industry})`;
     console.log('filterFormula', filterFormula);
