@@ -1,5 +1,5 @@
 var Airtable = require("airtable");
-var AirtableKey = require("../env.json");
+var AirtableKey = require("../env.production");
 var base = new Airtable({ apiKey: AirtableKey.AIRTABLE_KEY }).base(
   AirtableKey.AIRTABLE_BASE
 );
