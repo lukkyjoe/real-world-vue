@@ -1,10 +1,10 @@
 var Airtable = require("airtable");
-var AirtableKey = require("../env.production");
+var AirtableKey = require("../env.json");
 var base = new Airtable({ apiKey: AirtableKey.AIRTABLE_KEY }).base(
   AirtableKey.AIRTABLE_BASE
 );
 
-export const getIndustries = () => {
+export const getIndustries = query => {
   return new Promise((resolve, reject) => {
     base("industries")
       .select({
@@ -17,18 +17,35 @@ export const getIndustries = () => {
         // This function (`page`) will get called for each page of records.
         let resultsArray = [];
         records.forEach(function(record) {
+          let resultObj = {}
           let recordName = record.get("Name");
           console.log("Retrieved", recordName);
           if (recordName) {
-            resultsArray.push(record.get("Name"));
+            resultObj.name = record.get("Name")
+            resultObj.code = record.get("Name")
+            resultsArray.push(resultObj);
           }
         });
+        console.log('resultsArray', resultsArray)
 
         // To fetch the next page of records, call `fetchNextPage`.
         // If there are more records, `page` will get called again.
         // If there are no more records, `done` will get called.
         console.log("api records", records);
-        resolve(resultsArray);
+        if (resultsArray.length) {
+          const results = resultsArray.filter(element => {
+            console.log('element', element)
+            console.log('lowercase', element.name.toLowerCase())
+            console.log('query', query);
+            return element.name.toLowerCase().includes(query.toLowerCase())
+          }) 
+          console.log('results', results) 
+          resolve(results);
+        } else {
+          resolve([])
+        }
+      
+
       });
   });
 };

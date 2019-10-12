@@ -3,17 +3,26 @@
     <div class="ui vertical segment">
       <div class="flexbox">
         <div class="flex-content">
-          <h3>Dynamic Search with ajax (country name)</h3>
+          <h3>Search for a broker / service (by industry)</h3>
           <div>
-            <model-list-select
-              :list="countries"
-              option-value="code"
-              option-text="name"
-              v-model="selectedCountry"
-              placeholder="select item"
-              @searchchange="searchCountry"
-            >
-            </model-list-select>
+            <div class="foobar">
+              <model-list-select
+                :list="countries"
+                option-value="code"
+                option-text="name"
+                v-model="selectedCountry"
+                placeholder="select item"
+                @searchchange="searchCountry"
+              >
+              </model-list-select>
+              <el-button 
+                icon="el-icon-search" 
+                circle
+                v-on:click="logSomething"
+                >
+              </el-button>
+            </div>
+
           </div>
         </div>
         <div class="flex-result">
@@ -36,7 +45,7 @@
         </div>
       </div>
     </div>
-    <div class="ui vertical segment">
+    <!-- <div class="ui vertical segment">
       <div class="flexbox">
         <div class="flex-content">
           <h3>Init with ajax</h3>
@@ -74,14 +83,9 @@
             </tbody>
           </table>
         </div>
-        <el-button 
-          icon="el-icon-search" 
-          circle
-          v-on:click="logSomething"
-          >
-        </el-button>
+
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -90,6 +94,7 @@ import { ModelListSelect } from 'vue-search-select'
 import axios from 'axios'
 import { ajaxFindCountry } from '../data/countriesApi'
 import 'vue-search-select/dist/VueSearchSelect.css'
+import { getIndustries } from '../apis/airtable'
 
 
 export default {
@@ -109,9 +114,15 @@ export default {
   methods: {
     searchCountry (searchText) {
       this.searchText = searchText
-      ajaxFindCountry(searchText).then(response => {
-        this.countries = response
-      })
+      // ajaxFindCountry(searchText).then(response => {
+      //   this.countries = response
+      // })
+      this.searchText = searchText
+      getIndustries(searchText)
+        .then(response => {
+          this.countries = response
+          console.log('this.countries', this.countries)
+          })
     },
     printSearchText (searchText) {
       this.searchText2 = searchText
@@ -139,7 +150,7 @@ export default {
       this.$router.push({
         path: 'results',
         query: {
-          industry: 'Building and Construction'
+          industry: this.selectedCountry.name
           }
         })
     }
@@ -149,4 +160,11 @@ export default {
   }
 }
 </script>
+
+<style>
+.foobar {
+  display: flexbox;
+  flex-direction: row;
+}
+</style>
 
