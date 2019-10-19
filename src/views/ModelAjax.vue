@@ -94,7 +94,7 @@ import { ModelListSelect } from 'vue-search-select'
 import axios from 'axios'
 // import { ajaxFindCountry } from '../data/countriesApi'
 import 'vue-search-select/dist/VueSearchSelect.css'
-import { getIndustries } from '../apis/airtable'
+import { getIndustries, getIndividuals } from '../apis/airtable'
 
 
 export default {
@@ -118,7 +118,7 @@ export default {
       //   this.countries = response
       // })
       this.searchText = searchText
-      getIndustries(searchText)
+      getIndividuals(searchText)
         .then(response => {
           this.countries = response
           console.log('this.countries', this.countries)
