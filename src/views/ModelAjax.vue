@@ -15,9 +15,8 @@
                 @searchchange="searchCountry"
               >
               </model-list-select>
-              <el-button 
+              <el-button style="padding-left: 50px"
                 icon="el-icon-search" 
-                circle
                 v-on:click="logSomething"
                 >
               </el-button>
