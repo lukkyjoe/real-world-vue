@@ -1,9 +1,22 @@
 var Airtable = require("airtable");
-var AirtableKey = require("../env.production");
+// const dotenv = require('dotenv');
+const AirtableKey = require('../env.production')
+
+// const result = dotenv.config()
+ 
+// if (result.error) {
+//   throw result.error
+// }
+ 
+// console.log(result.parsed)
+// console.log('process.env', process.env)
+
+// var AirtableKey = require("../env.production");
 var base = new Airtable({ apiKey: AirtableKey.AIRTABLE_KEY }).base(
   AirtableKey.AIRTABLE_BASE
 );
 
+// console.log('look here', AirtableKey.AIRTABLE_KEY)
 export const getIndustries = query => {
   return new Promise((resolve, reject) => {
     base("industries")

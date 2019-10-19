@@ -1,4 +1,4 @@
 module.exports = {
-  AIRTABLE_BASE: process.env.AIRTABLE_BASE,
-  AIRTABLE_KEY: process.env.AIRTABLE_KEY
+  AIRTABLE_BASE: process.env.VUE_APP_AIRTABLE_BASE,
+  AIRTABLE_KEY: process.env.VUE_APP_AIRTABLE_KEY
 };
