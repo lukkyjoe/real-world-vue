@@ -12,6 +12,13 @@
     <div v-if="post" class="content">
       <el-card v-for="business in post">
         {{ business }}
+        <el-rate
+          v-model="business.communicationRating"
+          disabled
+          show-score
+          text-color="#ff9900"
+          score-template="{value} points">
+        </el-rate>
       </el-card>
       <el-card>
         <a href="https://airtable.com/shrCbN3XSgXaifXNY">Submit a review!</a>
@@ -28,7 +35,8 @@ export default {
     return {
       loading: false,
       post: null,
-      error: null
+      error: null,
+      value: 3
     }
   },
   created () {
