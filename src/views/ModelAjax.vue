@@ -165,7 +165,7 @@ export default {
 
 <style>
 .foobar {
-  display: flexbox;
+  display: flex;
   flex-direction: row;
 }
 </style>
