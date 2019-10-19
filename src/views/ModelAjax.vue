@@ -3,7 +3,7 @@
     <div class="ui vertical segment">
       <div class="flexbox">
         <div class="flex-content">
-          <h3>Search for a broker / service (by industry)</h3>
+          <h3>Search for an individual</h3>
           <div>
             <div class="foobar">
               <model-list-select
@@ -92,7 +92,7 @@
 <script>
 import { ModelListSelect } from 'vue-search-select'
 import axios from 'axios'
-import { ajaxFindCountry } from '../data/countriesApi'
+// import { ajaxFindCountry } from '../data/countriesApi'
 import 'vue-search-select/dist/VueSearchSelect.css'
 import { getIndustries } from '../apis/airtable'
 
