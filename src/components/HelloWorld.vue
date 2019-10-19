@@ -93,6 +93,13 @@ export default {
     msg: String
   }
 };
+console.log('look here')
+console.log(process.env)
+console.log(process.env.FOO_BAR)
+console.log(process.env.VUE_APP_FOO_BAR)
+console.log(process.env.VUE_APP_AIRTABLE_BASE)
+console.log(process.env.VUE_APP_AIRTABLE_KEY)
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
