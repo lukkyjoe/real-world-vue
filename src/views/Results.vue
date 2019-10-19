@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <h1>RESULTS</h1>
+    <h1>RESULTS for individual</h1>
     <div v-if="loading" class="loading">
       Loading...
     </div>
@@ -12,6 +12,9 @@
     <div v-if="post" class="content">
       <el-card v-for="business in post">
         {{ business }}
+      </el-card>
+      <el-card>
+        <a href="https://airtable.com/shrCbN3XSgXaifXNY">Submit a review!</a>
       </el-card>
     </div>
   </div>
