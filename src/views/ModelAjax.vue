@@ -11,7 +11,7 @@
                 option-value="code"
                 option-text="name"
                 v-model="selectedCountry"
-                placeholder="select item"
+                placeholder="search individual"
                 @searchchange="searchCountry"
               >
               </model-list-select>
@@ -33,12 +33,14 @@
             <tr>
               <th>code</th>
               <th>name</th>
+              <th>id</th>
             </tr>
             </thead>
             <tbody>
             <tr>
               <td>{{selectedCountry.code}}</td>
               <td>{{selectedCountry.name}}</td>
+              <td>{{selectedCountry.ID}}</td>
             </tr>
             </tbody>
           </table>
@@ -146,11 +148,11 @@ export default {
       return `${animation.title_short1} - ${animation.twitter_account} - ${animation.public_url}`
     },
     logSomething () {
-      console.log('log something', this.selectedCountry.name)
+      console.log('log something', this.selectedCountry.name, this.selectedCountry.ID)
       this.$router.push({
         path: 'results',
         query: {
-          industry: this.selectedCountry.name
+          individual: this.selectedCountry.ID
           }
         })
     }

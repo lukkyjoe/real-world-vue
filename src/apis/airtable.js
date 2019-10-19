@@ -21,7 +21,7 @@ export const getIndividuals = query => {
     base("Individuals")
       .select({
         // Selecting the first 3 records in Grid view:
-        maxRecords: 100,
+        // maxRecords: 100,
         view: "Grid view"
       })
       .firstPage(function page(error, records) {
@@ -30,11 +30,13 @@ export const getIndividuals = query => {
         let resultsArray = [];
         records.forEach(function(record) {
           let resultObj = {};
-          let recordName = record.get("FULL NAME");
+          let recordName = record.get("FULL_NAME");
+          let individualID = record.get("ID");
           console.log("Retrieved", recordName);
           if (recordName) {
             resultObj.name = recordName;
             resultObj.code = recordName;
+            resultObj.ID = individualID;
             resultsArray.push(resultObj);
           }
         });
@@ -105,13 +107,11 @@ export const getIndustries = query => {
   });
 };
 
-export const getResults = filterValue => {
-  console.log("process.env", process.env);
-  console.log("AIRTABLE_BASE", process.env.AIRTABLE_BASE);
+export const getReviews = id => {
   return new Promise((resolve, reject) => {
-    let filterFormula = `FIND('${filterValue}', {Individual})`;
+    let filterFormula = `FIND('${id}', {individual_being_reviewed})`;
     console.log("filterFormula", filterFormula);
-    base("business")
+    base("reviews")
       .select({
         // maxRecords: 8,
         view: "Grid view",
@@ -123,15 +123,21 @@ export const getResults = filterValue => {
         if (error) reject(error);
         // This function (`page`) will get called for each page of records.
         let resultsArray = [];
-        if (records.length) {
-          records.forEach(function(record) {
-            let recordName = record.get("Name");
-            console.log("Retrieved", recordName);
-            if (recordName) {
-              resultsArray.push(record.get("Name"));
-            }
-          });
-        }
+        records.forEach(function(record) {
+          let resultObj = {};
+          let recordName = record.get("review ID");
+          let communicationRating = record.get("Rate the advisors communication skills (1 star being the terrible, 5 star being excellent)")
+          let notes = record.get("Notes")
+          console.log("Retrieved", recordName);
+          if (recordName) {
+            resultObj.name = recordName;
+            resultObj.code = recordName;
+            resultObj.communicationRating = communicationRating;
+            resultObj.notes = notes;
+            resultsArray.push(resultObj);
+          }
+        });
+        console.log("resultsArray", resultsArray);
 
         // To fetch the next page of records, call `fetchNextPage`.
         // If there are more records, `page` will get called again.

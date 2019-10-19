@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { getResults } from '../apis/airtable'
+import { getReviews } from '../apis/airtable'
 
 export default {
   data () {
@@ -50,9 +50,9 @@ export default {
       //     this.post = post
       //   }
       // })
-      console.log('foobar query param', this.$route.query.industry)
-      let filteredIndustry = this.$route.query.industry
-      getResults(filteredIndustry)
+      console.log('foobar query param', this.$route.query.individual)
+      let filteredIndividual = this.$route.query.individual
+      getReviews(filteredIndividual)
         .then(response => {
           this.loading = false
           this.post = response
