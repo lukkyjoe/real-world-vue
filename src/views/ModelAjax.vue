@@ -12,7 +12,7 @@
                 option-text="name"
                 v-model="individual"
                 placeholder="search individual"
-                @searchchange="searchCountry"
+                @searchchange="searchIndividual"
               >
               </model-list-select>
               <el-button style="padding-left: 50px"
@@ -113,7 +113,7 @@ export default {
     this.searchAnimation()
   },
   methods: {
-    searchCountry (searchText) {
+    searchIndividual (searchText) {
       this.searchText = searchText
       // ajaxFindCountry(searchText).then(response => {
       //   this.countries = response
