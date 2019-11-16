@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <h1>RESULTS for individual</h1>
+    <h1>Reviews for {{individualName}}</h1>
     <div v-if="loading" class="loading">
       Loading...
     </div>
@@ -10,15 +10,15 @@
     </div>
 
     <div v-if="post" class="content">
-      <el-card v-for="business in post">
+      <el-card v-for="business in post" v-bind:key="business">
         {{ business }}
-        <el-rate
+        <!-- <el-rate
           v-model="business.communicationRating"
           disabled
           show-score
           text-color="#ff9900"
           score-template="{value} points">
-        </el-rate>
+        </el-rate> -->
       </el-card>
       <el-card>
         <a href="https://airtable.com/shrCbN3XSgXaifXNY">Submit a review!</a>
@@ -36,7 +36,8 @@ export default {
       loading: false,
       post: null,
       error: null,
-      value: 3
+      value: 3,
+      individualName: 'individual'
     }
   },
   created () {
@@ -67,6 +68,7 @@ export default {
         .then(response => {
           this.loading = false
           this.post = response
+          this.individualName = this.$route.query.name
           console.log('sup post', this.post)
         })
         .catch(err => {
@@ -75,6 +77,6 @@ export default {
           this.error = err
         })
     }
-  }  
+  }
 }
 </script>

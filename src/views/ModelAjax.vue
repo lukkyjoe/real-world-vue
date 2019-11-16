@@ -151,7 +151,8 @@ export default {
       this.$router.push({
         path: 'results',
         query: {
-          individual: this.individual.ID
+          individual: this.individual.ID,
+          name: this.individual.code
           }
         })
     }
