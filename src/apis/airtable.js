@@ -46,17 +46,26 @@ export const getIndividuals = query => {
         // If there are more records, `page` will get called again.
         // If there are no more records, `done` will get called.
         console.log("api records", records);
-        if (resultsArray.length) {
-          const results = resultsArray.filter(element => {
-            console.log("element", element);
-            console.log("lowercase", element.name.toLowerCase());
-            console.log("query", query);
+        let results;
+        if (resultsArray.length >= 1) {
+          results = resultsArray.filter(element => {
+            // console.log("element", element);
+            // console.log("lowercase", element.name.toLowerCase());
+            // console.log("query", query);
             return element.name.toLowerCase().includes(query.toLowerCase());
           });
           console.log("results", results);
+          if (results.length <= 0) {
+            let someArray = [];
+            someArray.push({
+              text: "supfoo",
+              code: "No results found",
+              name: "No results found text"
+            });
+            console.log("serverside no results found log");
+            resolve(someArray);
+          }
           resolve(results);
-        } else {
-          resolve([]);
         }
       });
   });
@@ -126,8 +135,10 @@ export const getReviews = id => {
         records.forEach(function(record) {
           let resultObj = {};
           let recordName = record.get("review ID");
-          let communicationRating = record.get("Rate the advisors communication skills (1 star being the terrible, 5 star being excellent)")
-          let notes = record.get("Notes")
+          let communicationRating = record.get(
+            "Rate the advisors communication skills (1 star being the terrible, 5 star being excellent)"
+          );
+          let notes = record.get("Notes");
           console.log("Retrieved", recordName);
           if (recordName) {
             resultObj.name = recordName;
