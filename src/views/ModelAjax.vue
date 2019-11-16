@@ -21,7 +21,9 @@
                 >
               </el-button>
             </div>
-
+            <el-card>
+              <a href="https://airtable.com/shr0A9hWQExhLLXs3">Submit an individual profile</a>
+            </el-card>
           </div>
         </div>
         <!-- <div class="flex-result">
@@ -122,8 +124,7 @@ export default {
       getIndividuals(searchText)
         .then(response => {
           this.countries = response
-          console.log('this.countries', this.countries)
-          })
+        })
     },
     printSearchText (searchText) {
       this.searchText2 = searchText
