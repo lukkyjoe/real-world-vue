@@ -12,6 +12,7 @@
     <div v-if="post" class="content">
       <el-card v-for="business in post" v-bind:key="business">
         {{ business }}
+        <div v-if="business.netPromoterScore">Net Promoter Score: {{business.netPromoterScore}}</div>
         <!-- <el-rate
           v-model="business.communicationRating"
           disabled
