@@ -10,13 +10,13 @@
                 :list="countries"
                 option-value="code"
                 option-text="name"
-                v-model="selectedCountry"
+                v-model="individual"
                 placeholder="search individual"
                 @searchchange="searchCountry"
               >
               </model-list-select>
               <el-button style="padding-left: 50px"
-                icon="el-icon-search" 
+                icon="el-icon-search"
                 v-on:click="logSomething"
                 >
               </el-button>
@@ -24,7 +24,7 @@
 
           </div>
         </div>
-        <div class="flex-result">
+        <!-- <div class="flex-result">
           <h4>input text(searchText)</h4>
           <p>{{searchText}}</p>
           <table class="ui celled table">
@@ -37,13 +37,13 @@
             </thead>
             <tbody>
             <tr>
-              <td>{{selectedCountry.code}}</td>
-              <td>{{selectedCountry.name}}</td>
-              <td>{{selectedCountry.ID}}</td>
+              <td>{{individual.code}}</td>
+              <td>{{individual.name}}</td>
+              <td>{{individual.ID}}</td>
             </tr>
             </tbody>
           </table>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- <div class="ui vertical segment">
@@ -102,7 +102,7 @@ export default {
   data () {
     return {
       countries: [],
-      selectedCountry: {},
+      individual: {},
       searchText: '',
       animations: [],
       selectedAnimation: {},
@@ -147,11 +147,11 @@ export default {
       return `${animation.title_short1} - ${animation.twitter_account} - ${animation.public_url}`
     },
     logSomething () {
-      console.log('log something', this.selectedCountry.name, this.selectedCountry.ID)
+      console.log('log something', this.individual.name, this.individual.ID)
       this.$router.push({
         path: 'results',
         query: {
-          individual: this.selectedCountry.ID
+          individual: this.individual.ID
           }
         })
     }
