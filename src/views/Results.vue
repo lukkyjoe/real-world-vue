@@ -20,7 +20,10 @@
           score-template="{value} points">
         </el-rate> -->
       </el-card>
-      <el-card>
+      <el-card v-if="isEmpty">
+        <a href="https://airtable.com/shrCbN3XSgXaifXNY">Be the first to submit a review!</a>
+      </el-card>
+      <el-card v-else>
         <a href="https://airtable.com/shrCbN3XSgXaifXNY">Submit a review!</a>
       </el-card>
     </div>
@@ -37,13 +40,19 @@ export default {
       post: null,
       error: null,
       value: 3,
-      individualName: 'individual'
+      individualName: 'individual',
+      emptyText: 'Be the first to submit review for this individual.'
     }
   },
   created () {
     // fetch the data when the view is created and the data is
     // already being observed
     this.fetchData()
+  },
+  computed: {
+    isEmpty: function() {
+      return this.post.length === 0
+    }
   },
   watch: {
     // call again the method if the route changes
