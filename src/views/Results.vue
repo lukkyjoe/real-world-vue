@@ -25,7 +25,7 @@
         <a href="https://airtable.com/shrCbN3XSgXaifXNY">Be the first to submit a review!</a>
       </el-card>
       <el-card v-else>
-        <a href="https://airtable.com/shrCbN3XSgXaifXNY">Submit a review!</a>
+        <a :href="reviewFormLink">Submit a review!</a>
       </el-card>
     </div>
   </div>
@@ -42,7 +42,7 @@ export default {
       error: null,
       value: 3,
       individualName: 'individual',
-      emptyText: 'Be the first to submit review for this individual.'
+      emptyText: 'Be the first to submit review for this individual.',
     }
   },
   created () {
@@ -53,7 +53,11 @@ export default {
   computed: {
     isEmpty: function() {
       return this.post.length === 0
+    },
+    reviewFormLink() {
+     return (this.$route.query.individual && this.$route.query.name) ? `https://airtable.com/shrCbN3XSgXaifXNY?prefill_Name%20of%20broker=${this.$route.query.name}&prefill_individual_being_reviewed={${this.$route.query.individual}}` : `https://airtable.com/shrCbN3XSgXaifXNY`
     }
+
   },
   watch: {
     // call again the method if the route changes
