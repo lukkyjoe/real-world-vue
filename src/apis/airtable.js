@@ -134,16 +134,16 @@ export const getReviews = id => {
         let resultsArray = [];
         records.forEach(function(record) {
           let resultObj = {};
-          let recordName = record.get("review ID");
-          let communicationRating = record.get(
-            "Rate the advisors communication skills (1 star being the terrible, 5 star being excellent)"
+          let reviewID = record.get("review ID");
+          let Nps = record.get(
+            "NPS TEST"
           );
           let notes = record.get("Notes");
-          console.log("Retrieved", recordName);
-          if (recordName) {
-            resultObj.name = recordName;
-            resultObj.code = recordName;
-            resultObj.communicationRating = communicationRating;
+
+          console.log("Retrieved", reviewID);
+          if (reviewID) {
+            resultObj.id = reviewID;
+            resultObj.netPromoterScore = Nps;
             resultObj.notes = notes;
             resultsArray.push(resultObj);
           }
