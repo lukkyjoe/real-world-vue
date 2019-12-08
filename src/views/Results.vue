@@ -55,7 +55,7 @@ export default {
       return this.post.length === 0
     },
     reviewFormLink() {
-     return (this.$route.query.individual && this.$route.query.name) ? `https://airtable.com/shrCbN3XSgXaifXNY?prefill_Name%20of%20broker=${this.$route.query.name}&prefill_individual_being_reviewed={${this.$route.query.individual}}` : `https://airtable.com/shrCbN3XSgXaifXNY`
+     return (this.$route.query.individual && this.$route.query.name) ? `https://airtable.com/shrCbN3XSgXaifXNY?prefill_Name%20of%20broker=${this.$route.query.name}&prefill_individual_being_reviewed=${this.$route.query.individual}` : `https://airtable.com/shrCbN3XSgXaifXNY`
     }
 
   },
