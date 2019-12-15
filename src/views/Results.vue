@@ -11,8 +11,9 @@
 
     <div v-if="post" class="content">
       <el-card v-for="business in post" v-bind:key="business">
-        {{ business }}
-        <div v-if="business.netPromoterScore">Net Promoter Score: {{business.netPromoterScore}}</div>
+        <!-- {{ business }} -->
+        <div v-if="business.netPromoterScore">Net Promoter Score: {{business.netPromoterScore}} out of 10</div>
+        <div>TODO: display optional responses if they exist</div>
         <!-- <el-rate
           v-model="business.communicationRating"
           disabled
