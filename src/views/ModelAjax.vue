@@ -21,7 +21,9 @@
                 >
               </el-button>
             </div>
-            <el-card>
+            <el-card
+              class="create-profile"
+            >
               <a href="https://airtable.com/shr0A9hWQExhLLXs3">Submit an individual profile</a>
             </el-card>
           </div>
@@ -168,6 +170,11 @@ export default {
 .foobar {
   display: flex;
   flex-direction: row;
+}
+.create-profile {
+  position: absolute;
+  bottom: 100px;
+  width: 100%;
 }
 </style>
 
