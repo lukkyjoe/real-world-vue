@@ -1,5 +1,5 @@
 <template>
   <div class="about">
-    <h1>This is is about how bad the problem is. and how song, john, and joseph are gonna change it</h1>
+    <h1>Rate your broker. By Song, John, and Joseph.</h1>
   </div>
 </template>
