@@ -13,6 +13,7 @@
                 v-model="individual"
                 placeholder="search individual"
                 @searchchange="searchIndividual"
+
               >
               </model-list-select>
               <el-button style="padding-left: 50px"
@@ -24,7 +25,7 @@
             <el-card
               class="create-profile"
             >
-              <a href="https://airtable.com/shr0A9hWQExhLLXs3">Submit an individual profile</a>
+              <a href="https://airtable.com/shr0A9hWQExhLLXs3">Can't find your broker? Create a profile for and help your community by adding to the database!</a>
             </el-card>
           </div>
         </div>
@@ -99,7 +100,7 @@ import { ModelListSelect } from 'vue-search-select'
 import axios from 'axios'
 // import { ajaxFindCountry } from '../data/countriesApi'
 import 'vue-search-select/dist/VueSearchSelect.css'
-import { getIndustries, getIndividuals } from '../apis/airtable'
+import { getIndividuals } from '../apis/airtable'
 
 
 export default {
