@@ -96,7 +96,7 @@ export default {
         sup.then(values => {
           // this.suggestions = [];
           console.log('inside the then block', values)
-          this.suggestions.push({name: "default", data: values})
+          this.suggestions.push({name: "default", data: values}) //something reactive happens here ....
         }).catch(err => console.log('inside catch!', err))
       }, this.debounceMilliseconds);
     },
