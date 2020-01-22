@@ -32,6 +32,11 @@ export default new Router({
       path: "/results",
       name: "results",
       component: () => import("./views/Results.vue")
+    },
+    {
+      path: '/autosuggest',
+      name: "autosuggest",
+      component: () => import("./views/Autosuggest.vue")
     }
   ]
 });

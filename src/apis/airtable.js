@@ -32,7 +32,7 @@ export const getIndividuals = query => {
           let resultObj = {};
           let recordName = record.get("FULL_NAME");
           let individualID = record.get("ID");
-          console.log("Retrieved", recordName);
+          // console.log("Retrieved", recordName);
           if (recordName) {
             resultObj.name = recordName;
             resultObj.code = recordName;
@@ -87,7 +87,7 @@ export const getIndustries = query => {
         records.forEach(function(record) {
           let resultObj = {};
           let recordName = record.get("Name");
-          console.log("Retrieved", recordName);
+          // console.log("Retrieved", recordName);
           if (recordName) {
             resultObj.name = record.get("Name");
             resultObj.code = record.get("Name");
@@ -140,7 +140,7 @@ export const getReviews = id => {
           );
           let notes = record.get("Notes");
 
-          console.log("Retrieved", reviewID);
+          // console.log("Retrieved", reviewID);
           if (reviewID) {
             resultObj.id = reviewID;
             resultObj.netPromoterScore = Nps;
