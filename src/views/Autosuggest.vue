@@ -127,7 +127,14 @@ export default {
     },
     getSuggestionValue(suggestion) {
       let { name, item } = suggestion;
-      return name == "hotels" ? item.title : item.name;
+      this.$router.push({
+        path: 'results',
+        // query: {
+        //   individual: this.individual.ID,
+        //   name: this.individual.code
+        //   }
+        })
+      // return name == "hotels" ? item.title : item.name;
     }
   }
 };
