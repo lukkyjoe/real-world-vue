@@ -9,12 +9,13 @@
         :sectionConfigs="sectionConfigs"
         :renderSuggestion="renderSuggestion"
         :getSuggestionValue="getSuggestionValue"
+        :on-selected="onSelected"
         @input="fetchResults"
       />
       <div v-if="selected" style="margin-top: 10px;">
         You have selected:
         <code>
-          <pre>{{JSON.stringify(selected, null, 4)}}</pre>
+          <pre>{{ JSON.stringify(selected, null, 4) }}</pre>
         </code>
       </div>
     </div>
@@ -42,9 +43,9 @@ export default {
       photosUrl: "https://jsonplaceholder.typicode.com/photos",
       inputProps: {
         id: "autosuggest__input",
-        placeholder: "Search for broker",
         class: "form-control",
-        name: "hello"
+        name: "hello",
+        onInputChange: this.onInputChange
       },
       suggestions: [],
       sectionConfigs: {
@@ -92,16 +93,18 @@ export default {
         //   photos.length &&
         //     this.suggestions.push({ name: "hotels", data: photos });
         // });
-        const sup = getIndividuals(query)
-        sup.then(values => {
-          // this.suggestions = [];
-          console.log('inside the then block', values)
-          this.suggestions.push({name: "default", data: values}) //something reactive happens here ....
-        }).catch(err => console.log('inside catch!', err))
+        const sup = getIndividuals(query);
+        sup
+          .then(values => {
+            this.suggestions = [];
+            console.log("inside the then block", values);
+            this.suggestions.push({ name: "defaultss", data: values }); //something reactive happens here ....
+          })
+          .catch(err => console.log("inside catch!", err));
       }, this.debounceMilliseconds);
     },
     filterResults(data, text, field) {
-      console.log('filterResults', arguments)
+      console.log("filterResults", arguments);
       return data
         .filter(item => {
           if (item[field].toLowerCase().indexOf(text.toLowerCase()) > -1) {
@@ -110,8 +113,11 @@ export default {
         })
         .sort();
     },
+    onSelected(option) {
+      this.selected = option.item;
+    },
     renderSuggestion(suggestion) {
-      console.log('renderSuggestion', arguments)
+      console.log("renderSuggestion", arguments);
       if (suggestion.name === "hotels") {
         const image = suggestion.item;
         console.log(image);
@@ -125,15 +131,36 @@ export default {
         return suggestion.item.name;
       }
     },
+    onInputChange(text) {
+      console.log('onInputChange', text)
+      if (text === "" || text === undefined) {
+        return;
+      }
+
+      /* Full control over filtering. Maybe fetch from API?! Up to you!!! */
+      const filteredData = this.options[0].data
+        .filter(item => {
+          return item.toLowerCase().indexOf(text.toLowerCase()) > -1;
+        })
+        .slice(0, this.limit);
+
+      this.filteredOptions = [
+        {
+          data: filteredData
+        }
+      ];
+    },
     getSuggestionValue(suggestion) {
       let { name, item } = suggestion;
-      this.$router.push({
-        path: 'results',
-        // query: {
-        //   individual: this.individual.ID,
-        //   name: this.individual.code
-        //   }
-        })
+      console.log('get suggestion value', suggestion);
+      return suggestion.item.name
+      // this.$router.push({
+      //   path: 'results',
+      //   // query: {
+      //   //   individual: this.individual.ID,
+      //   //   name: this.individual.code
+      //   //   }
+      //   })
       // return name == "hotels" ? item.title : item.name;
     }
   }
