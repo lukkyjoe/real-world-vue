@@ -6,12 +6,17 @@
         v-model="query"
         :suggestions="suggestions"
         :inputProps="inputProps"
-        :sectionConfigs="sectionConfigs"
         :renderSuggestion="renderSuggestion"
         :getSuggestionValue="getSuggestionValue"
         :on-selected="onSelected"
         @input="fetchResults"
       />
+      <el-button
+        style="padding-left: 50px"
+        icon="el-icon-search"
+        v-on:click="logSomething"
+      >
+      </el-button>
       <div v-if="selected" style="margin-top: 10px;">
         You have selected:
         <code>
@@ -48,28 +53,7 @@ export default {
         onInputChange: this.onInputChange
       },
       suggestions: [],
-      sectionConfigs: {
-        default: {
-          limit: 6,
-          onSelected: selected => {
-            this.selected = selected.item;
-          }
-        },
-        destinations: {
-          limit: 6,
-          label: "Destination",
-          onSelected: selected => {
-            this.selected = selected.item;
-          }
-        },
-        hotels: {
-          limit: 6,
-          label: "Hotels",
-          onSelected: selected => {
-            this.selected = selected.item;
-          }
-        }
-      }
+      individual: {}
     };
   },
   methods: {
@@ -114,6 +98,7 @@ export default {
         .sort();
     },
     onSelected(option) {
+      console.log("onselected option", option);
       this.selected = option.item;
     },
     renderSuggestion(suggestion) {
@@ -132,7 +117,7 @@ export default {
       }
     },
     onInputChange(text) {
-      console.log('onInputChange', text)
+      console.log("onInputChange", text);
       if (text === "" || text === undefined) {
         return;
       }
@@ -152,16 +137,22 @@ export default {
     },
     getSuggestionValue(suggestion) {
       let { name, item } = suggestion;
-      console.log('get suggestion value', suggestion);
-      return suggestion.item.name
-      // this.$router.push({
-      //   path: 'results',
-      //   // query: {
-      //   //   individual: this.individual.ID,
-      //   //   name: this.individual.code
-      //   //   }
-      //   })
-      // return name == "hotels" ? item.title : item.name;
+      console.log("get suggestion value", suggestion);
+      this.individual = suggestion.item;
+      return suggestion.item.name;
+    },
+    logSomething() {
+      console.log(
+        "log something",
+        this.individual
+      );
+      this.$router.push({
+        path: "results",
+        query: {
+          individual: this.individual.ID,
+          name: this.individual.code
+        }
+      });
     }
   }
 };
