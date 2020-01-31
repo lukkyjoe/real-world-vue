@@ -60,7 +60,7 @@ export const getIndividuals = query => {
             someArray.push({
               text: "supfoo",
               code: "No results found",
-              name: "No results found text"
+              name: "No results found"
             });
             console.log("serverside no results found log");
             resolve(someArray);

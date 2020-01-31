@@ -1,22 +1,24 @@
 <template>
   <div id="app">
     <div class="container">
-      <vue-autosuggest
-        ref="autocomplete"
-        v-model="query"
-        :suggestions="suggestions"
-        :inputProps="inputProps"
-        :renderSuggestion="renderSuggestion"
-        :getSuggestionValue="getSuggestionValue"
-        :on-selected="onSelected"
-        @input="fetchResults"
-      />
-      <el-button
-        style="padding-left: 50px"
-        icon="el-icon-search"
-        v-on:click="logSomething"
-      >
-      </el-button>
+      <div class="foobar">
+        <vue-autosuggest
+          ref="autocomplete"
+          v-model="query"
+          :suggestions="suggestions"
+          :inputProps="inputProps"
+          :renderSuggestion="renderSuggestion"
+          :getSuggestionValue="getSuggestionValue"
+          :on-selected="onSelected"
+          @input="fetchResults"
+        />
+        <el-button
+
+          icon="el-icon-search"
+          v-on:click="logSomething"
+        >
+        </el-button>
+      </div>
       <div v-if="selected" style="margin-top: 10px;">
         You have selected:
         <code>
@@ -179,7 +181,6 @@ export default {
   display: block;
   border: 1px solid #616161;
   padding: 10px;
-  width: 100%;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -225,6 +226,10 @@ export default {
   border-top: none;
 }
 
+#autosuggest {
+    width: 100%;
+}
+
 .autosuggest__results .autosuggest__results-before {
   color: gray;
   font-size: 11px;
@@ -241,9 +246,9 @@ export default {
   background-color: #f6f6f6;
 }
 
-/* .foobar {
+.foobar {
   display: flex;
   flex-direction: row;
-  width: 100%;
-} */
+  position: relative;
+}
 </style>
