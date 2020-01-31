@@ -1,6 +1,8 @@
 <template>
   <div class="post">
     <h1>Reviews for {{individualName}}</h1>
+    <h2>Net Promoter Score: {{NPS}}</h2>
+
     <div v-if="loading" class="loading">
       Loading...
     </div>
@@ -10,10 +12,10 @@
     </div>
 
     <div v-if="post" class="content">
-      <el-card v-for="business in post" v-bind:key="business">
+      <el-card v-for="(business, index) in post" v-bind:key="index">
         <!-- {{ business }} -->
-        <div v-if="business.netPromoterScore">Net Promoter Score: {{business.netPromoterScore}} out of 10</div>
-        <div>TODO: display optional responses if they exist</div>
+        <div v-if="business.reviewScore">Review score (out of 10): {{business.reviewScore}} out of 10</div>
+        <!-- <div>TODO: display optional responses if they exist</div> -->
         <!-- <el-rate
           v-model="business.communicationRating"
           disabled
@@ -34,6 +36,7 @@
 
 <script>
 import { getReviews } from '../apis/airtable'
+import NPS from 'net-promoter-score'
 
 export default {
   data () {
@@ -44,6 +47,7 @@ export default {
       value: 3,
       individualName: 'individual',
       emptyText: 'Be the first to submit review for this individual.',
+      NPS: ''
     }
   },
   created () {
@@ -85,6 +89,10 @@ export default {
           this.post = response
           this.individualName = this.$route.query.name
           console.log('sup post', this.post)
+          const mapOfScores = this.post.map(review => Number(review.reviewScore))
+          this.NPS = new NPS(mapOfScores).score
+
+          // group the scores by buckets
         })
         .catch(err => {
           console.error(err);

@@ -122,7 +122,7 @@ export const getReviews = id => {
     console.log("filterFormula", filterFormula);
     base("reviews")
       .select({
-        // maxRecords: 8,
+        maxRecords: 100,
         view: "Grid view",
         filterByFormula: filterFormula
       })
@@ -143,7 +143,7 @@ export const getReviews = id => {
           // console.log("Retrieved", reviewID);
           if (reviewID) {
             resultObj.id = reviewID;
-            resultObj.netPromoterScore = Nps;
+            resultObj.reviewScore = Nps;
             resultObj.notes = notes;
             resultsArray.push(resultObj);
           }

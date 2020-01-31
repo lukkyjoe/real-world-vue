@@ -14,6 +14,7 @@
     "core-js": "^2.6.5",
     "dotenv": "^8.1.0",
     "element-ui": "^2.12.0",
+    "net-promoter-score": "0.0.2",
     "vue": "^2.6.10",
     "vue-autosuggest": "^2.0.4",
     "vue-multiselect": "^2.1.6",

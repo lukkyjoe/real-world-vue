@@ -240,4 +240,10 @@ export default {
   .autosuggest__results-item.autosuggest__results-item--highlighted {
   background-color: #f6f6f6;
 }
+
+/* .foobar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+} */
 </style>
