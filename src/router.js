@@ -12,7 +12,7 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Search
+      component: () => import("./views/Autosuggest.vue")
     },
     {
       path: "/about",
