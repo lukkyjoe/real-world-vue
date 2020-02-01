@@ -12,7 +12,9 @@
           :on-selected="onSelected"
           @input="fetchResults"
         >
-        <!-- <template slot="after-section">Some text</template> -->
+        <template slot="after-section">
+              <a href="https://airtable.com/shr0A9hWQExhLLXs3">Can't find your broker? Be the first to submit a profile for this broker.</a>
+        </template>
         </vue-autosuggest>
         <el-button
           icon="el-icon-search"

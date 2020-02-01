@@ -138,7 +138,11 @@ export const getReviews = id => {
           let Nps = record.get(
             "NPS TEST"
           );
-          let notes = record.get("Notes");
+          let notes = {}
+          notes.positive = record.get("Are there any positive attributes or skills about [INDIVIDUAL] that stood out to you?");
+          notes.negative = record.get("What could they do differently to improve your experience?");
+          notes.general = record.get("Anything else about your experience you want to add?")
+
 
           // console.log("Retrieved", reviewID);
           if (reviewID) {

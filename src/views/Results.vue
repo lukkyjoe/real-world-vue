@@ -12,10 +12,15 @@
     </div>
 
     <div v-if="post" class="content">
-      <el-card v-for="(business, index) in post" v-bind:key="index">
+      <el-card v-for="({reviewScore, notes}, index) in post" v-bind:key="index">
         <!-- {{ business }} -->
-        <div v-if="business.reviewScore">Review score (out of 10): {{business.reviewScore}} out of 10</div>
-        <!-- <div>TODO: display optional responses if they exist</div> -->
+        <div v-if="reviewScore">Review score (out of 10): {{reviewScore}} out of 10</div>
+        <br>
+        <div v-if="notes.positive"><strong>Positives:</strong> {{notes.positive}}</div>
+        <br>
+        <div v-if="notes.negative">Negatives: {{notes.negative}}</div>
+        <br>
+        <div v-if="notes.general">General: {{notes.general}}</div>
         <!-- <el-rate
           v-model="business.communicationRating"
           disabled
