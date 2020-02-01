@@ -11,12 +11,13 @@
           :getSuggestionValue="getSuggestionValue"
           :on-selected="onSelected"
           @input="fetchResults"
-        />
+        >
+        <!-- <template slot="after-section">Some text</template> -->
+        </vue-autosuggest>
         <el-button
-
           icon="el-icon-search"
           v-on:click="logSomething"
-        >
+        >Search
         </el-button>
       </div>
       <div v-if="selected" style="margin-top: 10px;">
@@ -179,15 +180,15 @@ export default {
   outline: none;
   position: relative;
   display: block;
-  border: 1px solid #616161;
-  padding: 10px;
+  border: 1px solid #DCDFE6;
+  padding: 12px;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
 
 #autosuggest__input.autosuggest__input-open {
-  border-bottom-left-radius: 0;
+  border-bottom-left-radius: 10px;
   border-bottom-right-radius: 0;
 }
 
