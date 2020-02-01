@@ -30,7 +30,7 @@
         </el-rate> -->
       </el-card>
       <el-card v-if="isEmpty">
-        <a href="https://airtable.com/shrCbN3XSgXaifXNY">Be the first to submit a review!</a>
+        <a :href="reviewFormLink">Be the first to submit a review!</a>
       </el-card>
       <el-card v-else>
         <a :href="reviewFormLink">Submit a review!</a>
@@ -65,6 +65,7 @@ export default {
       return this.post.length === 0
     },
     reviewFormLink() {
+      console.log('data for submit link',)
      return (this.$route.query.individual && this.$route.query.name) ? `https://airtable.com/shrCbN3XSgXaifXNY?prefill_Name%20of%20broker=${this.$route.query.name}&prefill_individual_being_reviewed=${this.$route.query.individual}` : `https://airtable.com/shrCbN3XSgXaifXNY`
     }
 
