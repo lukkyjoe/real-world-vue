@@ -152,6 +152,9 @@ export default {
         "log something",
         this.individual
       );
+      if (!this.individual.id) {
+        return alert('Please select valid search result')
+      }
       this.$router.push({
         path: "results",
         query: {
