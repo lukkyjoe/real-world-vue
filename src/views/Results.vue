@@ -1,7 +1,7 @@
 <template>
   <div class="post">
     <h1>Reviews for {{individualName}}</h1>
-    <h2>Net Promoter Score: {{NPS}}</h2>
+    <h2>Net Promoter Score: {{NPSObj.score}} ({{NPSObj.summary}})</h2>
 
     <div v-if="loading" class="loading">
       Loading...
@@ -96,7 +96,7 @@ export default {
           this.individualName = this.$route.query.name
           console.log('sup post', this.post)
           const mapOfScores = this.post.map(review => Number(review.reviewScore))
-          this.NPS = new NPS(mapOfScores).score
+          this.NPSObj = new NPS(mapOfScores)
 
           // group the scores by buckets
         })

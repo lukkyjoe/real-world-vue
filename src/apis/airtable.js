@@ -147,7 +147,7 @@ export const getReviews = id => {
           // console.log("Retrieved", reviewID);
           if (reviewID) {
             resultObj.id = reviewID;
-            resultObj.reviewScore = Nps;
+            resultObj.reviewScore = Nps; // should this be called NPS?
             resultObj.notes = notes;
             resultsArray.push(resultObj);
           }
