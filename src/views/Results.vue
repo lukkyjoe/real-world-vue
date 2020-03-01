@@ -14,7 +14,6 @@
     <div v-if="post" class="content">
       <el-card v-for="({reviewScore, notes}, index) in post" v-bind:key="index">
         <!-- {{ business }} -->
-        <div v-if="reviewScore">Review score (out of 10): {{reviewScore}} out of 10</div>
         <br>
         <div v-if="notes.positive"><strong>Positives:</strong> {{notes.positive}}</div>
         <br>
