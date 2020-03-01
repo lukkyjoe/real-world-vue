@@ -51,7 +51,7 @@ export default {
       value: 3,
       individualName: 'individual',
       emptyText: 'Be the first to submit review for this individual.',
-      NPS: ''
+      NPSObj: {}
     }
   },
   created () {
