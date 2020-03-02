@@ -37,6 +37,10 @@ export default new Router({
       path: '/autosuggest',
       name: "autosuggest",
       component: () => import("./views/Autosuggest.vue")
+    },
+    {
+      path: '/*',
+      component: 404
     }
   ]
 });
