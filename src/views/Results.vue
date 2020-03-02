@@ -1,7 +1,8 @@
 <template>
   <div class="post">
     <h1>Reviews for {{individualName}}</h1>
-    <h2>Net Promoter Score: {{NPSObj.score}} ({{NPSObj.summary}})</h2>
+    <h2>Net Promoter Score: {{NPSObj.score}}</h2>
+    <h3>This provider has been rated as {{NPSObj.summary}} by past clients</h3>
 
     <div v-if="loading" class="loading">
       Loading...
